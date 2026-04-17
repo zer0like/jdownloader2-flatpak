@@ -11,6 +11,7 @@ finish-args:
   - --socket=x11
   - --share=network
   - --share=ipc
+  - --filesystem=home
   - --filesystem=xdg-download
   - --device=all
   - --device=dri
