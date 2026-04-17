@@ -1,0 +1,41 @@
+app-id: org.jdownloader.JDownloader
+runtime: org.freedesktop.Platform
+runtime-version: '23.08'
+sdk: org.freedesktop.Sdk
+sdk-extensions:
+  - org.freedesktop.Sdk.Extension.openjdk17
+command: jdownloader.sh
+
+finish-args:
+  - --socket=wayland
+  - --socket=x11
+  - --share=network
+  - --share=ipc
+  - --filesystem=xdg-download
+  - --device=all
+  - --device=dri
+  - --env=JAVA_HOME=/app/jre
+  - --env=PATH=/app/jre/bin:/app/bin:/usr/bin
+
+modules:
+  - name: openjdk
+    buildsystem: simple
+    build-commands:
+      - /usr/lib/sdk/openjdk17/install.sh
+
+  - name: jdownloader
+    buildsystem: simple
+    build-commands:
+      - install -Dm644 JDownloader.jar /app/share/java/JDownloader.jar
+      - install -Dm755 jdownloader.sh /app/bin/jdownloader.sh
+      - install -Dm644 org.jdownloader.JDownloader.desktop /app/share/applications/org.jdownloader.JDownloader.desktop
+      - install -Dm644 icon.png /app/share/icons/hicolor/512x512/apps/org.jdownloader.JDownloader.png
+    sources:
+      - type: file
+        path: JDownloader.jar
+      - type: file
+        path: jdownloader.sh
+      - type: file
+        path: org.jdownloader.JDownloader.desktop
+      - type: file
+        path: icon.png

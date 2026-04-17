@@ -1,0 +1,9 @@
+[Desktop Entry]
+Name=JDownloader
+Comment=Download management tool
+Exec=jdownloader.sh
+Icon=org.jdownloader.JDownloader
+Terminal=false
+Type=Application
+Categories=Network;FileTransfer;
+StartupNotify=true
